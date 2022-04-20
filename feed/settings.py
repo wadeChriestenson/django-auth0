@@ -28,6 +28,24 @@ DEBUG = True
 ALLOWED_HOSTS = []
 AUTH_USER_MODEL = 'feedapp.User'
 
+# Auth0 settings
+SOCIAL_AUTH_TRAILING_SLASH = False  # Remove trailing slash from routes
+SOCIAL_AUTH_AUTH0_DOMAIN = 'wiseprojekt.us.auth0.com'
+SOCIAL_AUTH_AUTH0_KEY = 'gzZIjlpGWQBqvG86buPMtWYNyqHlDC5P'
+SOCIAL_AUTH_AUTH0_SECRET = 'd6o_3Y7l0OCXkM6sBwDxCB0GzlBVIjQhFo8fx65d5B9NskNPzdi0vY_EA_dVBmL4'
+SOCIAL_AUTH_AUTH0_SCOPE = [
+    'openid',
+    'profile',
+    'email'
+]
+AUTHENTICATION_BACKENDS = {
+    'social_core.backends.auth0.Auth0OAuth2',
+    'django.contrib.auth.backends.ModelBackend'
+}
+
+LOGIN_URL = '/login/auth0'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +56,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'feedapp.apps.FeedappConfig',
+    'social_django',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
