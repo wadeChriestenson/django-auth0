@@ -29,14 +29,14 @@ def reports(request):
     return render(request, 'feedapp/reports.html')
 
 
-def delete_post(request, post_id):
-    # check if post belongs to user
-    post = Post.objects.get(id=post_id)
-    if post.user == request.user:
-        post.delete()
-    # remove it from the database
-    # redirect back to same page
-    return redirect('index')
+# def delete_post(request, post_id):
+#     # check if post belongs to user
+#     post = Post.objects.get(id=post_id)
+#     if post.user == request.user:
+#         post.delete()
+#     # remove it from the database
+#     # redirect back to same page
+#     return redirect('index')
 
 
 @login_required
